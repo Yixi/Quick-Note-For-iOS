@@ -7,20 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA5846B117C652D1005D436E /* PXEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5846B017C652D1005D436E /* PXEngine.framework */; };
+		FA5846B517C65565005D436E /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = FA5846B417C65565005D436E /* default.css */; };
+		FA6840B217C3900C00FF3C2E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA763E6D179829C700EDED4B /* CoreData.framework */; };
+		FA6840B417C3916500FF3C2E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6840B317C3916500FF3C2E /* libsqlite3.dylib */; };
+		FA6840B717C392B600FF3C2E /* YXDB.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6840B617C392B500FF3C2E /* YXDB.m */; };
+		FA6840BA17C3B82E00FF3C2E /* YXNoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6840B917C3B82E00FF3C2E /* YXNoteModel.m */; };
 		FA763E68179829C700EDED4B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA763E67179829C700EDED4B /* UIKit.framework */; };
 		FA763E6A179829C700EDED4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA763E69179829C700EDED4B /* Foundation.framework */; };
 		FA763E6C179829C700EDED4B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA763E6B179829C700EDED4B /* CoreGraphics.framework */; };
-		FA763E6E179829C700EDED4B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA763E6D179829C700EDED4B /* CoreData.framework */; };
 		FA763E74179829C700EDED4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA763E72179829C700EDED4B /* InfoPlist.strings */; };
 		FA763E76179829C700EDED4B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA763E75179829C700EDED4B /* main.m */; };
 		FA763E7A179829C700EDED4B /* YXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA763E79179829C700EDED4B /* YXAppDelegate.m */; };
 		FA763E7C179829C700EDED4B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FA763E7B179829C700EDED4B /* Default.png */; };
 		FA763E7E179829C700EDED4B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA763E7D179829C700EDED4B /* Default@2x.png */; };
 		FA763E80179829C700EDED4B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA763E7F179829C700EDED4B /* Default-568h@2x.png */; };
-		FA763E83179829C700EDED4B /* QuickNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA763E81179829C700EDED4B /* QuickNote.xcdatamodeld */; };
+		FA763ED21798403500EDED4B /* YXItemListController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA763ED01798403500EDED4B /* YXItemListController.m */; };
+		FA763ED31798403500EDED4B /* YXItemListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA763ED11798403500EDED4B /* YXItemListController.xib */; };
+		FA763EDD179845A100EDED4B /* YXItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA763EDC179845A100EDED4B /* YXItemCell.m */; };
+		FA763EE11798467C00EDED4B /* YXItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA763EE01798467C00EDED4B /* YXItemCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA5846B017C652D1005D436E /* PXEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PXEngine.framework; sourceTree = "<group>"; };
+		FA5846B417C65565005D436E /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
+		FA6840B317C3916500FF3C2E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		FA6840B517C392B500FF3C2E /* YXDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDB.h; sourceTree = "<group>"; };
+		FA6840B617C392B500FF3C2E /* YXDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDB.m; sourceTree = "<group>"; };
+		FA6840B817C3B82E00FF3C2E /* YXNoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNoteModel.h; sourceTree = "<group>"; };
+		FA6840B917C3B82E00FF3C2E /* YXNoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNoteModel.m; sourceTree = "<group>"; };
 		FA763E64179829C700EDED4B /* QuickNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA763E67179829C700EDED4B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FA763E69179829C700EDED4B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -35,7 +50,12 @@
 		FA763E7B179829C700EDED4B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FA763E7D179829C700EDED4B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		FA763E7F179829C700EDED4B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		FA763E82179829C700EDED4B /* QuickNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuickNote.xcdatamodel; sourceTree = "<group>"; };
+		FA763ECF1798403500EDED4B /* YXItemListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXItemListController.h; sourceTree = "<group>"; };
+		FA763ED01798403500EDED4B /* YXItemListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXItemListController.m; sourceTree = "<group>"; };
+		FA763ED11798403500EDED4B /* YXItemListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXItemListController.xib; sourceTree = "<group>"; };
+		FA763EDB179845A100EDED4B /* YXItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXItemCell.h; sourceTree = "<group>"; };
+		FA763EDC179845A100EDED4B /* YXItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXItemCell.m; sourceTree = "<group>"; };
+		FA763EE01798467C00EDED4B /* YXItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXItemCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,10 +63,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA6840B417C3916500FF3C2E /* libsqlite3.dylib in Frameworks */,
+				FA6840B217C3900C00FF3C2E /* CoreData.framework in Frameworks */,
 				FA763E68179829C700EDED4B /* UIKit.framework in Frameworks */,
 				FA763E6A179829C700EDED4B /* Foundation.framework in Frameworks */,
 				FA763E6C179829C700EDED4B /* CoreGraphics.framework in Frameworks */,
-				FA763E6E179829C700EDED4B /* CoreData.framework in Frameworks */,
+				FA5846B117C652D1005D436E /* PXEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +95,8 @@
 		FA763E66179829C700EDED4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA5846B017C652D1005D436E /* PXEngine.framework */,
+				FA6840B317C3916500FF3C2E /* libsqlite3.dylib */,
 				FA763E67179829C700EDED4B /* UIKit.framework */,
 				FA763E69179829C700EDED4B /* Foundation.framework */,
 				FA763E6B179829C700EDED4B /* CoreGraphics.framework */,
@@ -86,8 +110,18 @@
 			children = (
 				FA763E78179829C700EDED4B /* YXAppDelegate.h */,
 				FA763E79179829C700EDED4B /* YXAppDelegate.m */,
-				FA763E81179829C700EDED4B /* QuickNote.xcdatamodeld */,
 				FA763E70179829C700EDED4B /* Supporting Files */,
+				FA763ECF1798403500EDED4B /* YXItemListController.h */,
+				FA763ED01798403500EDED4B /* YXItemListController.m */,
+				FA763ED11798403500EDED4B /* YXItemListController.xib */,
+				FA763EDB179845A100EDED4B /* YXItemCell.h */,
+				FA763EDC179845A100EDED4B /* YXItemCell.m */,
+				FA763EE01798467C00EDED4B /* YXItemCell.xib */,
+				FA6840B517C392B500FF3C2E /* YXDB.h */,
+				FA6840B617C392B500FF3C2E /* YXDB.m */,
+				FA6840B817C3B82E00FF3C2E /* YXNoteModel.h */,
+				FA6840B917C3B82E00FF3C2E /* YXNoteModel.m */,
+				FA5846B417C65565005D436E /* default.css */,
 			);
 			path = QuickNote;
 			sourceTree = "<group>";
@@ -162,6 +196,9 @@
 				FA763E7C179829C700EDED4B /* Default.png in Resources */,
 				FA763E7E179829C700EDED4B /* Default@2x.png in Resources */,
 				FA763E80179829C700EDED4B /* Default-568h@2x.png in Resources */,
+				FA763ED31798403500EDED4B /* YXItemListController.xib in Resources */,
+				FA763EE11798467C00EDED4B /* YXItemCell.xib in Resources */,
+				FA5846B517C65565005D436E /* default.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +211,10 @@
 			files = (
 				FA763E76179829C700EDED4B /* main.m in Sources */,
 				FA763E7A179829C700EDED4B /* YXAppDelegate.m in Sources */,
-				FA763E83179829C700EDED4B /* QuickNote.xcdatamodeld in Sources */,
+				FA763ED21798403500EDED4B /* YXItemListController.m in Sources */,
+				FA763EDD179845A100EDED4B /* YXItemCell.m in Sources */,
+				FA6840B717C392B600FF3C2E /* YXDB.m in Sources */,
+				FA6840BA17C3B82E00FF3C2E /* YXNoteModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,9 +291,14 @@
 		FA763E87179829C700EDED4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickNote/QuickNote-Prefix.pch";
 				INFOPLIST_FILE = "QuickNote/QuickNote-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -262,9 +307,14 @@
 		FA763E88179829C700EDED4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickNote/QuickNote-Prefix.pch";
 				INFOPLIST_FILE = "QuickNote/QuickNote-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -289,21 +339,9 @@
 				FA763E88179829C700EDED4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		FA763E81179829C700EDED4B /* QuickNote.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				FA763E82179829C700EDED4B /* QuickNote.xcdatamodel */,
-			);
-			currentVersion = FA763E82179829C700EDED4B /* QuickNote.xcdatamodel */;
-			path = QuickNote.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = FA763E5C179829C700EDED4B /* Project object */;
 }

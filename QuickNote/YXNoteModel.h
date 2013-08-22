@@ -10,4 +10,11 @@
 
 @interface YXNoteModel : NSObject
 
+@property NSInteger noteid;
+@property (retain)NSString *title;
+@property (retain)NSString *tag;
+@property (retain)NSString *updated;
+
+- (id)initForList;
+
 @end

@@ -8,22 +8,22 @@
 
 #import "YXItemCell.h"
 
+
 @implementation YXItemCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
+- (void)setTitle:(NSString *)t{
+    if(![t isEqualToString:_title]){
+        _title = [t copy];
+        _TitleLabel.text = _title;
     }
-    return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setTags:(NSString *)t {
+    if(![t isEqualToString:_tags]){
+        _tags = [t copy];
+        _TagLabel.text = _tags;
+    }
 }
+
 
 @end

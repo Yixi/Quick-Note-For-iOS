@@ -10,4 +10,9 @@
 
 @interface YXItemCell : UITableViewCell
 
+@property (copy, nonatomic) NSString *title;
+@property (copy, nonatomic) NSString *tags;
+@property (strong, nonatomic) IBOutlet UILabel *TitleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *TagLabel;
+
 @end

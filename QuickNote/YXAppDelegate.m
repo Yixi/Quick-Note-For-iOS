@@ -7,6 +7,8 @@
 //
 
 #import "YXAppDelegate.h"
+#import "YXItemListController.h"
+#import "YXDB.h"
 
 @implementation YXAppDelegate
 
@@ -18,8 +20,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    YXItemListController *yxItemListController = [[YXItemListController alloc] initWithNibName:@"YXItemListController" bundle:nil];
+    self.navController = [[UINavigationController alloc] initWithRootViewController:yxItemListController];
+//    [self.navController pushViewController:yxItemListController animated:YES];
+    self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
+    [[YXDB alloc] initDatabase];
     return YES;
 }
 

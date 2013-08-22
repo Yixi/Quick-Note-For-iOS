@@ -10,4 +10,6 @@
 
 @interface YXItemListController : UITableViewController
 
+@property (strong, nonatomic) NSMutableArray *testData;
+
 @end
