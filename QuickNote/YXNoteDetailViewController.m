@@ -83,8 +83,7 @@
     [self saveNote];
 }
 - (void)textViewDidChange:(UITextView *)textView {
-    NSString *content = _NoteContent.text;
-//    NSLog(content);
+    [self saveNote];
 }
 
 @end

@@ -43,7 +43,7 @@
     self.testData = [[YXDB alloc] getAllNotes];
 
 
-    self.title = [[NSString alloc] initWithFormat:@"%d Notes",[self.testData count]];
+    [self refreshTitle];
 
     UIBarButtonItem *settingButton = [[UIBarButtonItem alloc] initWithTitle:@"Setting"
                                                                       style:UIBarButtonItemStyleBordered
@@ -70,9 +70,12 @@
     [_testData insertObject:newInsertnote atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    self.title = [[NSString alloc] initWithFormat:@"%d Notes",[self.testData count]];
+    [self refreshTitle];
 }
 
+- (void)refreshTitle{
+    self.title = [[NSString alloc] initWithFormat:@"%d Notes",[self.testData count]];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -122,28 +125,28 @@
     return 72.0;
 }
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+        // Delete the row from the data sourc
+        NSDictionary *currentNote = _testData[indexPath.row];
+        [[YXDB alloc] deleteNoteById:[[currentNote objectForKey:@"id"] intValue]];
+        [_testData removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self refreshTitle];
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.

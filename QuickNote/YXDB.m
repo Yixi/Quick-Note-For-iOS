@@ -72,18 +72,6 @@
         NSAssert(0, @"Failed to open database");
     }
 
-//    char *insertTestData = "INSERT INTO notes (title,tag) values(?,?);";
-//    sqlite3_stmt *stmt;
-//    if(sqlite3_prepare_v2(dataBase, insertTestData, -1, &stmt, nil) == SQLITE_OK){
-//        sqlite3_bind_text(stmt, 1, "Test note", -1, NULL);
-//        sqlite3_bind_text(stmt, 2, "diigo job", -1, NULL);
-//    }
-//    if(sqlite3_step(stmt)!= SQLITE_DONE){
-//        //        NSAssert(0,@"Error insert data %s",errorMsg);
-//        NSLog(@"error insert data");
-//    }
-
-
     NSString *getAllNotesQuery = @"SELECT id,title,tag,updated FROM notes WHERE list=''";
     sqlite3_stmt *stmt;
     if(sqlite3_prepare_v2(dataBase, [getAllNotesQuery UTF8String], -1, &stmt, nil) == SQLITE_OK){
@@ -97,9 +85,6 @@
             char *updateData = (char *)sqlite3_column_text(stmt, 3);
             note.updated = [[NSString alloc] initWithUTF8String:updateData];
 
-//            NSDictionary *row = [[NSDictionary alloc] initWithObjectsAndKeys:note.title,@"title",note.tag,@"tags",note.updated,@"updated",nil];
-
-//            [sqlArray addObject:[note initForList]];
             [sqlArray insertObject:[note initForList] atIndex:0];
         }
     }
@@ -122,7 +107,6 @@
         sqlite3_bind_text(stmt, 3, [desc UTF8String], -1, NULL);
     }
     if(sqlite3_step(stmt)!= SQLITE_DONE){
-        //        NSAssert(0,@"Error insert data %s",errorMsg);
         NSLog(@"error insert data");
     }
 
@@ -188,7 +172,27 @@
     sqlite3_close(dataBase);
 }
 
+- (void)deleteNoteById:(NSInteger)noteid {
+    //this will just move the note to the "trash" list , not real delete;
+    
+    if(sqlite3_open([[self dbFilePath] UTF8String], &dataBase)!= SQLITE_OK){
+        sqlite3_close(dataBase);
+        NSAssert(0, @"Failed to open database");
+    }
+    sqlite3_stmt *stmt;
 
+    char *updateNoteQuery = "UPDATE notes SET list='trash' WHERE id=?;";
+    if(sqlite3_prepare_v2(dataBase, updateNoteQuery, -1, &stmt, nil) == SQLITE_OK){
+        sqlite3_bind_int(stmt, 1, noteid);
+    }
+    if(sqlite3_step(stmt)!= SQLITE_DONE){
+        NSLog(@"Error update data");
+    }
+
+
+    sqlite3_finalize(stmt);
+    sqlite3_close(dataBase);
+}
 
 @end
 
