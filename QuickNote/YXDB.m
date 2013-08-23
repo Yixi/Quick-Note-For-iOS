@@ -107,7 +107,7 @@
     return returnArray;
 }
 
-- (NSInteger)insertNewNote:(NSString *)title tag:(NSString *)tag desc:(NSString *)desc {
+- (id)insertNewNote:(NSString *)title tag:(NSString *)tag desc:(NSString *)desc {
 
     if(sqlite3_open([[self dbFilePath] UTF8String], &dataBase)!= SQLITE_OK){
         sqlite3_close(dataBase);
@@ -128,10 +128,67 @@
 
     sqlite3_int64 noteid = sqlite3_last_insert_rowid(dataBase);
     NSInteger pid = (NSInteger)noteid;
+    sqlite3_finalize(stmt);
+    sqlite3_close(dataBase);
+
+    NSDictionary *note = [self LoadNoteWithId:pid];
+
+    return note;
+}
+
+- (id)LoadNoteWithId:(NSInteger)noteid {
+    NSDictionary *newnote;
+
+    if(sqlite3_open([[self dbFilePath] UTF8String], &dataBase)!= SQLITE_OK){
+        sqlite3_close(dataBase);
+        NSAssert(0, @"Failed to open database");
+    }
+
+    NSString *SelectNoteQuery = [NSString stringWithFormat:@"SELECT id,title,desc,list,tag,updated,created FROM notes WHERE id=%d;",noteid];
+    sqlite3_stmt *stmt;
+    if(sqlite3_prepare_v2(dataBase, [SelectNoteQuery UTF8String], -1, &stmt, nil) == SQLITE_OK){
+        while (sqlite3_step(stmt) == SQLITE_ROW){
+            YXNoteModel *note = [[YXNoteModel alloc] init];
+            note.noteid = sqlite3_column_int(stmt, 0);
+            note.title = [[NSString alloc] initWithUTF8String:(char *) sqlite3_column_text(stmt, 1)];
+            note.desc = [[NSString alloc] initWithUTF8String:(char *) sqlite3_column_text(stmt, 2)];
+            note.list = [[NSString alloc] initWithUTF8String:(char *) sqlite3_column_text(stmt, 3)];
+            note.tag = [[NSString alloc] initWithUTF8String:(char *) sqlite3_column_text(stmt, 4)];
+            note.updated = [[NSString alloc] initWithUTF8String:(char *) sqlite3_column_text(stmt, 5)];
+            note.created = [[NSString alloc] initWithUTF8String:(char *) sqlite3_column_text(stmt, 6)];
+
+            newnote = [note initForNote];
+        }
+    }
+    sqlite3_finalize(stmt);
+    sqlite3_close(dataBase);
+    return newnote;
+}
+
+- (void)SaveNote:(NSInteger)noteid title:(NSString *)title desc:(NSString *)desc tag:(NSString *)tag {
+    if(sqlite3_open([[self dbFilePath] UTF8String], &dataBase)!= SQLITE_OK){
+        sqlite3_close(dataBase);
+        NSAssert(0, @"Failed to open database");
+    }
+    sqlite3_stmt *stmt;
+
+    char *updateNoteQuery = "UPDATE notes SET title=?,desc=?,tag=? WHERE id=?;";
+    if(sqlite3_prepare_v2(dataBase, updateNoteQuery, -1, &stmt, nil) == SQLITE_OK){
+        sqlite3_bind_text(stmt, 1, [title UTF8String], -1, NULL);
+        sqlite3_bind_text(stmt, 2, [desc UTF8String], -1, NULL);
+        sqlite3_bind_text(stmt, 3, [tag UTF8String], -1, NULL);
+        sqlite3_bind_int(stmt, 4, noteid);
+    }
+    if(sqlite3_step(stmt)!= SQLITE_DONE){
+        NSLog(@"Error update data");
+    }
+
 
     sqlite3_finalize(stmt);
     sqlite3_close(dataBase);
-    return pid;
 }
 
+
+
 @end
+

@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class YXNoteDetailViewController;
+
 @interface YXItemListController : UITableViewController
 
 @property (strong, nonatomic) NSMutableArray *testData;
+@property (strong, nonatomic) YXNoteDetailViewController *noteDetailViewController;
 
 @end

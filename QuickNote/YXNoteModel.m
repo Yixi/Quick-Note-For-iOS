@@ -20,11 +20,18 @@
 
 - (id)initForList {
     NSDictionary *row;
-//    NSString *noteId =(NSString *)self.noteid;
+    NSString *noteId = [NSString stringWithFormat:@"%d",self.noteid];
     NSString *title = self.title;
     NSString *tag = self.tag;
     NSString *updated = self.updated;
-    row =  [[NSDictionary alloc] initWithObjectsAndKeys:title,@"title",tag,@"tags",updated,@"updated",nil];
+    row =  [[NSDictionary alloc] initWithObjectsAndKeys:noteId,@"id",title,@"title",tag,@"tags",updated,@"updated",nil];
+    return row;
+}
+
+-(id)initForNote {
+    NSDictionary *row;
+    NSString *noteId = [NSString stringWithFormat:@"%d",self.noteid];
+    row = [[NSDictionary alloc] initWithObjectsAndKeys:noteId,@"id",_title,@"title",_tag,@"tags",_desc,@"desc",_list,@"list",_created,@"created",_updated,@"updated", nil];
     return row;
 }
 

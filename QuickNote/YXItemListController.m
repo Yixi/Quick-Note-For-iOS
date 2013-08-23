@@ -8,6 +8,7 @@
 
 #import "YXItemListController.h"
 #import "YXItemCell.h"
+#import "YXNoteDetailViewController.h"
 #import "YXDB.h"
 
 @interface YXItemListController ()
@@ -62,12 +63,11 @@
 
 - (void)addNote:(id)sender{
     NSLog(@"Add Note");
-    NSInteger newInsertId = [[YXDB alloc] insertNewNote:@"New Note" tag:@"" desc:@""];
-    NSDictionary *newrow = [[NSDictionary alloc] initWithObjectsAndKeys:@"New Note",@"title",@"",@"tags",@"",@"updated",nil];
+    NSDictionary *newInsertnote = [[YXDB alloc] insertNewNote:@"New Note" tag:@"ios" desc:@""];
     if(!_testData){
         _testData = [[NSMutableArray alloc] init];
     }
-    [_testData insertObject:newrow atIndex:0];
+    [_testData insertObject:newInsertnote atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     self.title = [[NSString alloc] initWithFormat:@"%d Notes",[self.testData count]];
@@ -166,12 +166,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if(!self.noteDetailViewController){
+        self.noteDetailViewController = [[YXNoteDetailViewController alloc] initWithNibName:@"YXNoteDetailViewController" bundle:nil];
+    }
+    NSDictionary *currentNote = _testData[indexPath.row];
+    self.noteDetailViewController.noteid = [[currentNote objectForKey:@"id"] intValue];
+//    NSLog(@"hit");
+    [self.navigationController pushViewController:self.noteDetailViewController animated:YES];
 }
 
 @end

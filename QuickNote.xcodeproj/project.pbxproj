@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		FA5846B117C652D1005D436E /* PXEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5846B017C652D1005D436E /* PXEngine.framework */; };
 		FA5846B517C65565005D436E /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = FA5846B417C65565005D436E /* default.css */; };
+		FA65E21417C73D6D000392B7 /* YXNoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA65E21217C73D6D000392B7 /* YXNoteDetailViewController.m */; };
+		FA65E21517C73D6D000392B7 /* YXNoteDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA65E21317C73D6D000392B7 /* YXNoteDetailViewController.xib */; };
 		FA6840B217C3900C00FF3C2E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA763E6D179829C700EDED4B /* CoreData.framework */; };
 		FA6840B417C3916500FF3C2E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6840B317C3916500FF3C2E /* libsqlite3.dylib */; };
 		FA6840B717C392B600FF3C2E /* YXDB.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6840B617C392B500FF3C2E /* YXDB.m */; };
@@ -31,6 +33,9 @@
 /* Begin PBXFileReference section */
 		FA5846B017C652D1005D436E /* PXEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PXEngine.framework; sourceTree = "<group>"; };
 		FA5846B417C65565005D436E /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
+		FA65E21117C73D6D000392B7 /* YXNoteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNoteDetailViewController.h; sourceTree = "<group>"; };
+		FA65E21217C73D6D000392B7 /* YXNoteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNoteDetailViewController.m; sourceTree = "<group>"; };
+		FA65E21317C73D6D000392B7 /* YXNoteDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXNoteDetailViewController.xib; sourceTree = "<group>"; };
 		FA6840B317C3916500FF3C2E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		FA6840B517C392B500FF3C2E /* YXDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDB.h; sourceTree = "<group>"; };
 		FA6840B617C392B500FF3C2E /* YXDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDB.m; sourceTree = "<group>"; };
@@ -122,6 +127,9 @@
 				FA6840B817C3B82E00FF3C2E /* YXNoteModel.h */,
 				FA6840B917C3B82E00FF3C2E /* YXNoteModel.m */,
 				FA5846B417C65565005D436E /* default.css */,
+				FA65E21117C73D6D000392B7 /* YXNoteDetailViewController.h */,
+				FA65E21217C73D6D000392B7 /* YXNoteDetailViewController.m */,
+				FA65E21317C73D6D000392B7 /* YXNoteDetailViewController.xib */,
 			);
 			path = QuickNote;
 			sourceTree = "<group>";
@@ -199,6 +207,7 @@
 				FA763ED31798403500EDED4B /* YXItemListController.xib in Resources */,
 				FA763EE11798467C00EDED4B /* YXItemCell.xib in Resources */,
 				FA5846B517C65565005D436E /* default.css in Resources */,
+				FA65E21517C73D6D000392B7 /* YXNoteDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +224,7 @@
 				FA763EDD179845A100EDED4B /* YXItemCell.m in Sources */,
 				FA6840B717C392B600FF3C2E /* YXDB.m in Sources */,
 				FA6840BA17C3B82E00FF3C2E /* YXNoteModel.m in Sources */,
+				FA65E21417C73D6D000392B7 /* YXNoteDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
