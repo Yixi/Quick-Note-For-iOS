@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YXNoteDetailViewController : UIViewController <UITextViewDelegate>
+@interface YXNoteDetailViewController : UIViewController <UITextViewDelegate,UITextFieldDelegate>
 
-@property NSInteger noteid;
+@property (nonatomic)NSInteger noteid;
 @property (strong, nonatomic) NSDictionary *currentNote;
-@property (weak, nonatomic) IBOutlet UILabel *NoteTitle;
-@property (weak, nonatomic) IBOutlet UILabel *NoteTag;
+@property (strong, nonatomic) IBOutlet UITextField *NoteTitle;
+@property (strong, nonatomic) IBOutlet UITextField *NoteTag;
+
 @property (weak, nonatomic) IBOutlet UITextView *NoteContent;
 
 @end

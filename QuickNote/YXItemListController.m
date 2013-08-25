@@ -57,6 +57,17 @@
     self.navigationItem.rightBarButtonItem = addButton;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self reloadData];
+}
+
+- (void)reloadData{
+    self.testData = [[YXDB alloc] getAllNotes];
+    [self.tableView reloadData];
+    [self refreshTitle];
+}
+
 - (void)setting:(id)sender{
     NSLog(@"Setting button click");
 }

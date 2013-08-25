@@ -7,6 +7,7 @@
 //
 
 #import "YXNoteDetailViewController.h"
+#import "YXItemListController.h"
 #import "YXDB.h"
 
 @interface YXNoteDetailViewController ()
@@ -30,6 +31,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initNote];
+
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Notes"
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self action:@selector(backToList:)];
+    self.navigationItem.leftBarButtonItem = backButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,6 +48,14 @@
         _noteid = newNoteid;
         [self initNote];
     }
+}
+
+- (void)backToList:(id)sender{
+//    NSLog(@"back");
+//    [self saveNote];
+    [self.view endEditing:YES];
+//    [[YXItemListController alloc] reloadData];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - Note;
 
@@ -83,6 +97,17 @@
     [self saveNote];
 }
 - (void)textViewDidChange:(UITextView *)textView {
+    [self saveNote];
+}
+
+#pragma mark - UITextFileView for note title and tag
+
+- (void)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSLog(@"changing");
+    [self saveNote];
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"end title");
     [self saveNote];
 }
 

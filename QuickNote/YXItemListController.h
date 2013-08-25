@@ -15,4 +15,5 @@
 @property (strong, nonatomic) NSMutableArray *testData;
 @property (strong, nonatomic) YXNoteDetailViewController *noteDetailViewController;
 
+- (void)reloadData;
 @end
