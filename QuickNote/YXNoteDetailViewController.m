@@ -36,6 +36,8 @@
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self action:@selector(backToList:)];
     self.navigationItem.leftBarButtonItem = backButton;
+
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,6 +62,7 @@
 #pragma mark - Note;
 
 - (void)initNote{
+
     if(self.noteid){
         self.currentNote = [[YXDB alloc] LoadNoteWithId:self.noteid];
         _NoteTitle.text = [_currentNote objectForKey:@"title"];

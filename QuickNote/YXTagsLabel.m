@@ -18,7 +18,7 @@
         // Initialization code
         self.backgroundColor = [UIColor colorWithHexString:@"#EAF1FF"];
         self.textColor = [UIColor colorWithHexString:@"2F5AD8"];
-        self.font = [UIFont systemFontOfSize:17];
+        self.font = [UIFont systemFontOfSize:13];
         self.textAlignment = NSTextAlignmentCenter;
 
         self.layer.masksToBounds = YES;
@@ -39,7 +39,7 @@
 - (void)setText:(NSString *)text {
     super.text = text;
     CGSize size = [self.text sizeWithFont:self.font constrainedToSize:CGSizeMake(320, 10000) lineBreakMode:NSLineBreakByWordWrapping];
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width + 20, size.height);
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width + 20, size.height+6);
 }
 
 @end

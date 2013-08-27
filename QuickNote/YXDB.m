@@ -85,7 +85,7 @@
             char *updateData = (char *)sqlite3_column_text(stmt, 3);
             note.updated = [[NSString alloc] initWithUTF8String:updateData];
 
-            [sqlArray insertObject:[note initForList] atIndex:0];
+            [sqlArray insertObject:[note buildForList] atIndex:0];
         }
     }
     returnArray = [sqlArray mutableCopy];
@@ -141,7 +141,7 @@
             note.updated = [[NSString alloc] initWithUTF8String:(char *) sqlite3_column_text(stmt, 5)];
             note.created = [[NSString alloc] initWithUTF8String:(char *) sqlite3_column_text(stmt, 6)];
 
-            newnote = [note initForNote];
+            newnote = [note buildForNote];
         }
     }
     sqlite3_finalize(stmt);

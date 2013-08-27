@@ -29,5 +29,12 @@
     }
 }
 
+- (void)setDatetime:(NSString *)t {
+    if(![t isEqualToString:_datetime]){
+        _datetime = [t copy];
+        _date.text = _datetime;
+    }
+}
+
 
 @end

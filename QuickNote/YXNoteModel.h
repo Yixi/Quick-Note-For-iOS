@@ -18,6 +18,6 @@
 @property (retain)NSString *created;
 @property (retain)NSString *updated;
 
-- (id)initForList;
-- (id)initForNote;
+- (NSDictionary *)buildForList;
+- (NSDictionary *)buildForNote;
 @end

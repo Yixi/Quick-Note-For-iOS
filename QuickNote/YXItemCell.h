@@ -13,6 +13,8 @@
 
 @property (copy, nonatomic) NSString *title;
 @property (copy, nonatomic) NSString *tags;
+@property (copy, nonatomic) NSString *datetime;
 @property (strong, nonatomic) IBOutlet UILabel *TitleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *date;
 
 @end

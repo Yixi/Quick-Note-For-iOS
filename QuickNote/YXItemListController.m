@@ -52,10 +52,10 @@
                                                                       style:UIBarButtonItemStyleBordered
                                                                      target:self
                                                                      action:@selector(setting:)];
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle:@"Add"
-                                                                  style:UIBarButtonItemStyleBordered
-                                                                 target:self
-                                                                 action:@selector(addNote:)];
+//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle:@"Add"
+//                                                                  style:UIBarButtonItemStyleBordered
+//                                                                 target:self
+//                                                                 action:@selector(addNote:)];
 
     self.navigationItem.leftBarButtonItem = settingButton;
 
@@ -67,6 +67,7 @@
 //    newNote.backgroundColor = [UIColor colorWithPatternImage:newNoteImg];
     newNote.layer.contents = (id)[UIImage imageNamed:@"addbutton.png"].CGImage;
     newNote.userInteractionEnabled = YES;
+    newNote.tag  = 1000;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addNote:)];
     [newNote addGestureRecognizer:tapGesture];
 
@@ -92,6 +93,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    UIView *addView = [self.navigationController.view viewWithTag:1000];
+    addView.hidden = NO;
     [self reloadData];
 }
 
@@ -100,6 +103,8 @@
     [self.tableView reloadData];
     [self refreshTitle];
 }
+
+
 
 - (void)setting:(id)sender{
     NSLog(@"Setting button click");
@@ -195,6 +200,7 @@
 
     cell.title = [rowData objectForKey:@"title"];
     cell.tags = [rowData objectForKey:@"tags"];
+    cell.datetime = [rowData objectForKey:@"updated"];
     
     // Configure the cell...
     return cell;
@@ -255,6 +261,10 @@
     self.noteDetailViewController.noteid = [[currentNote objectForKey:@"id"] intValue];
 //    NSLog(@"hit");
     [self.navigationController pushViewController:self.noteDetailViewController animated:YES];
+    UIView *addView = [self.navigationController.view viewWithTag:1000];
+    addView.hidden = YES;
 }
+
+
 
 @end

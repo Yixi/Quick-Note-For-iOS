@@ -18,17 +18,22 @@
     return self;
 }
 
-- (id)initForList {
+- (NSDictionary *)buildForList {
     NSDictionary *row;
     NSString *noteId = [NSString stringWithFormat:@"%d",self.noteid];
     NSString *title = self.title;
     NSString *tag = self.tag;
     NSString *updated = self.updated;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *day = [df dateFromString:updated];
+    df.dateFormat = @"MMM d";
+    updated = [df stringFromDate:day];
     row =  [[NSDictionary alloc] initWithObjectsAndKeys:noteId,@"id",title,@"title",tag,@"tags",updated,@"updated",nil];
     return row;
 }
 
--(id)initForNote {
+-(NSDictionary *)buildForNote {
     NSDictionary *row;
     NSString *noteId = [NSString stringWithFormat:@"%d",self.noteid];
     row = [[NSDictionary alloc] initWithObjectsAndKeys:noteId,@"id",_title,@"title",_tag,@"tags",_desc,@"desc",_list,@"list",_created,@"created",_updated,@"updated", nil];
