@@ -6,6 +6,7 @@
 //  Copyright (c) 2013年 Yixi Liu. All rights reserved.
 //
 
+#import <PXEngine/PXEngine.h>
 #import "YXItemListController.h"
 #import "YXItemCell.h"
 #import "YXNoteDetailViewController.h"
@@ -53,9 +54,24 @@
                                                                   style:UIBarButtonItemStyleBordered
                                                                  target:self
                                                                  action:@selector(addNote:)];
+
     self.navigationItem.leftBarButtonItem = settingButton;
     self.navigationItem.rightBarButtonItem = addButton;
+    UIImage *navbar_bg = [UIImage imageNamed:@"navbarbg.png"];
+    CGSize titlesize = self.navigationController.navigationBar.bounds.size;
+    navbar_bg = [self scaleToSize:navbar_bg size:titlesize];
+    [self.navigationController.navigationBar setBackgroundImage:navbar_bg forBarMetrics:UIBarMetricsDefault];
+
 }
+
+- (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)size{
+    UIGraphicsBeginImageContext(size);
+    [img drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return  scaledImage;
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

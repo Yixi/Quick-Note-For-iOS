@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA18FB3C17CC54DA00078D34 /* navbarbg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA18FB3B17CC54DA00078D34 /* navbarbg.png */; };
 		FA5846B117C652D1005D436E /* PXEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5846B017C652D1005D436E /* PXEngine.framework */; };
 		FA5846B517C65565005D436E /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = FA5846B417C65565005D436E /* default.css */; };
 		FA65E21417C73D6D000392B7 /* YXNoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA65E21217C73D6D000392B7 /* YXNoteDetailViewController.m */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA18FB3B17CC54DA00078D34 /* navbarbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbarbg.png; sourceTree = "<group>"; };
 		FA5846B017C652D1005D436E /* PXEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PXEngine.framework; sourceTree = "<group>"; };
 		FA5846B417C65565005D436E /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		FA65E21117C73D6D000392B7 /* YXNoteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNoteDetailViewController.h; sourceTree = "<group>"; };
@@ -80,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA18FB3A17CC54C900078D34 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				FA18FB3B17CC54DA00078D34 /* navbarbg.png */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
 		FA763E5B179829C700EDED4B = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +123,7 @@
 		FA763E6F179829C700EDED4B /* QuickNote */ = {
 			isa = PBXGroup;
 			children = (
+				FA18FB3A17CC54C900078D34 /* Resource */,
 				FA763E78179829C700EDED4B /* YXAppDelegate.h */,
 				FA763E79179829C700EDED4B /* YXAppDelegate.m */,
 				FA763E70179829C700EDED4B /* Supporting Files */,
@@ -208,6 +219,7 @@
 				FA763EE11798467C00EDED4B /* YXItemCell.xib in Resources */,
 				FA5846B517C65565005D436E /* default.css in Resources */,
 				FA65E21517C73D6D000392B7 /* YXNoteDetailViewController.xib in Resources */,
+				FA18FB3C17CC54DA00078D34 /* navbarbg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
