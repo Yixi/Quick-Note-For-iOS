@@ -56,7 +56,20 @@
                                                                  action:@selector(addNote:)];
 
     self.navigationItem.leftBarButtonItem = settingButton;
-    self.navigationItem.rightBarButtonItem = addButton;
+
+//    self.navigationItem.rightBarButtonItem = addButton;
+
+    UIView *newNote = [[UIView alloc] initWithFrame:CGRectMake(275, 20, 37, 53)];
+    UIImage *newNoteImg = [self scaleToSize:[UIImage imageNamed:@"addbutton.png"] size:newNote.bounds.size];
+    newNote.backgroundColor = [UIColor colorWithPatternImage:newNoteImg];
+    newNote.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addNote:)];
+    [newNote addGestureRecognizer:tapGesture];
+
+    [self.navigationController.view addSubview:newNote];
+
+
+
     UIImage *navbar_bg = [UIImage imageNamed:@"navbarbg.png"];
     CGSize titlesize = self.navigationController.navigationBar.bounds.size;
     navbar_bg = [self scaleToSize:navbar_bg size:titlesize];

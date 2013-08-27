@@ -21,7 +21,11 @@
 - (void)setTags:(NSString *)t {
     if(![t isEqualToString:_tags]){
         _tags = [t copy];
-        _TagLabel.text = _tags;
+        NSMutableArray *array = [NSMutableArray arrayWithArray:[_tags componentsSeparatedByString:@" "]];
+
+        YXFillTagsView *fillTagsView = [[YXFillTagsView alloc] initWithFrame:CGRectMake(20, 40, 280, 22)];
+        [fillTagsView bindTags:array isOverFlowHide:YES];
+        [self.contentView addSubview:fillTagsView];
     }
 }
 
