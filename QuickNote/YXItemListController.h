@@ -10,7 +10,9 @@
 
 @class YXNoteDetailViewController;
 
-@interface YXItemListController : UITableViewController
+@interface YXItemListController : UITableViewController{
+    BOOL viewIsOutOfStage;
+}
 
 @property (strong, nonatomic) NSMutableArray *testData;
 @property (strong, nonatomic) YXNoteDetailViewController *noteDetailViewController;

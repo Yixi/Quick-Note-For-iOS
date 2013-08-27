@@ -7,10 +7,12 @@
 //
 
 #import <PXEngine/PXEngine.h>
+#import <QuartzCore/QuartzCore.h>
 #import "YXItemListController.h"
 #import "YXItemCell.h"
 #import "YXNoteDetailViewController.h"
 #import "YXDB.h"
+#import "YXAppDelegate.h"
 
 @interface YXItemListController ()
 
@@ -60,8 +62,10 @@
 //    self.navigationItem.rightBarButtonItem = addButton;
 
     UIView *newNote = [[UIView alloc] initWithFrame:CGRectMake(275, 20, 37, 53)];
-    UIImage *newNoteImg = [self scaleToSize:[UIImage imageNamed:@"addbutton.png"] size:newNote.bounds.size];
-    newNote.backgroundColor = [UIColor colorWithPatternImage:newNoteImg];
+
+//    UIImage *newNoteImg = [self scaleToSize:[UIImage imageNamed:@"addbutton.png"] size:newNote.bounds.size];
+//    newNote.backgroundColor = [UIColor colorWithPatternImage:newNoteImg];
+    newNote.layer.contents = (id)[UIImage imageNamed:@"addbutton.png"].CGImage;
     newNote.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addNote:)];
     [newNote addGestureRecognizer:tapGesture];
@@ -99,6 +103,41 @@
 
 - (void)setting:(id)sender{
     NSLog(@"Setting button click");
+    [(YXAppDelegate *)[[UIApplication sharedApplication] delegate] makeSettingViewVisible];
+    [self moveToRightSide];
+}
+
+- (void)resotreViewLocation{
+    viewIsOutOfStage = NO;
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         self.navigationController.view.frame = CGRectMake(0, self.navigationController.view.frame.origin.y, self.navigationController.view.frame.size.width, self.navigationController.view.frame.size.height);
+                     } completion:^(BOOL finished){
+        UIControl *overView = (UIControl *)[[[UIApplication sharedApplication] keyWindow] viewWithTag:1024];
+        [overView removeFromSuperview];
+    }];
+}
+
+- (void)moveToRightSide{
+    viewIsOutOfStage = YES;
+    [self animateHomeViewToSide:CGRectMake(270.0f,
+            self.navigationController.view.frame.origin.y,
+            self.navigationController.view.frame.size.width,
+            self.navigationController.view.frame.size.height)];
+}
+
+- (void)animateHomeViewToSide:(CGRect)newViewRect{
+    [UIView animateWithDuration:0.2
+                    animations:^{
+                        self.navigationController.view.frame = newViewRect;
+                    } completion:^(BOOL finished){
+                        UIControl *overView = [[UIControl alloc] init];
+                        overView.tag = 1024;
+                        overView.backgroundColor = [UIColor clearColor];
+                        overView.frame = self.navigationController.view.frame;
+                        [overView addTarget:self action:@selector(resotreViewLocation) forControlEvents:UIControlEventTouchDown];
+                        [[[UIApplication sharedApplication] keyWindow] addSubview:overView];
+                    }];
 }
 
 - (void)addNote:(id)sender{

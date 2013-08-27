@@ -13,6 +13,8 @@
 		FA18FB4117CC87E100078D34 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA18FB4017CC87E100078D34 /* QuartzCore.framework */; };
 		FA18FB4417CC8A8000078D34 /* YXFillTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA18FB4317CC8A8000078D34 /* YXFillTagsView.m */; };
 		FA18FB4617CC912100078D34 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA18FB4517CC912100078D34 /* CoreData.framework */; };
+		FA18FB4A17CC9F4300078D34 /* YXSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA18FB4817CC9F4300078D34 /* YXSettingViewController.m */; };
+		FA18FB4B17CC9F4300078D34 /* YXSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18FB4917CC9F4300078D34 /* YXSettingViewController.xib */; };
 		FA5846B117C652D1005D436E /* PXEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5846B017C652D1005D436E /* PXEngine.framework */; };
 		FA5846B517C65565005D436E /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = FA5846B417C65565005D436E /* default.css */; };
 		FA65E21417C73D6D000392B7 /* YXNoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA65E21217C73D6D000392B7 /* YXNoteDetailViewController.m */; };
@@ -44,6 +46,9 @@
 		FA18FB4217CC8A8000078D34 /* YXFillTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFillTagsView.h; sourceTree = "<group>"; };
 		FA18FB4317CC8A8000078D34 /* YXFillTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFillTagsView.m; sourceTree = "<group>"; };
 		FA18FB4517CC912100078D34 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FA18FB4717CC9F4300078D34 /* YXSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSettingViewController.h; sourceTree = "<group>"; };
+		FA18FB4817CC9F4300078D34 /* YXSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSettingViewController.m; sourceTree = "<group>"; };
+		FA18FB4917CC9F4300078D34 /* YXSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXSettingViewController.xib; sourceTree = "<group>"; };
 		FA5846B017C652D1005D436E /* PXEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PXEngine.framework; sourceTree = "<group>"; };
 		FA5846B417C65565005D436E /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		FA65E21117C73D6D000392B7 /* YXNoteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNoteDetailViewController.h; sourceTree = "<group>"; };
@@ -158,6 +163,9 @@
 				FA18FB3E17CC87BA00078D34 /* YXTagsLabel.m */,
 				FA18FB4217CC8A8000078D34 /* YXFillTagsView.h */,
 				FA18FB4317CC8A8000078D34 /* YXFillTagsView.m */,
+				FA18FB4717CC9F4300078D34 /* YXSettingViewController.h */,
+				FA18FB4817CC9F4300078D34 /* YXSettingViewController.m */,
+				FA18FB4917CC9F4300078D34 /* YXSettingViewController.xib */,
 			);
 			path = QuickNote;
 			sourceTree = "<group>";
@@ -238,6 +246,7 @@
 				FA65E21517C73D6D000392B7 /* YXNoteDetailViewController.xib in Resources */,
 				FA18FB3C17CC54DA00078D34 /* navbarbg.png in Resources */,
 				AF73051CB5C6F7DCF640D074 /* addbutton.png in Resources */,
+				FA18FB4B17CC9F4300078D34 /* YXSettingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +266,7 @@
 				FA65E21417C73D6D000392B7 /* YXNoteDetailViewController.m in Sources */,
 				FA18FB3F17CC87BA00078D34 /* YXTagsLabel.m in Sources */,
 				FA18FB4417CC8A8000078D34 /* YXFillTagsView.m in Sources */,
+				FA18FB4A17CC9F4300078D34 /* YXSettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

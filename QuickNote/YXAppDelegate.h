@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class YXSettingViewController;
+
 @interface YXAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -17,8 +19,10 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @property (strong, nonatomic) UINavigationController *navController;
+@property (strong, nonatomic) YXSettingViewController *settingViewController;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (void)makeSettingViewVisible;
 
 @end

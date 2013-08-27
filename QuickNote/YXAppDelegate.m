@@ -9,6 +9,7 @@
 #import "YXAppDelegate.h"
 #import "YXItemListController.h"
 #import "YXDB.h"
+#import "YXSettingViewController.h"
 
 @implementation YXAppDelegate
 
@@ -20,13 +21,26 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+
+    self.settingViewController = [[YXSettingViewController alloc] initWithNibName:@"YXSettingViewController" bundle:nil];
+    self.settingViewController.view.frame = CGRectMake(0, 20,
+            self.settingViewController.view.frame.size.width,self.settingViewController.view.frame.size.height);
+    [self.window addSubview:self.settingViewController.view];
+    [self.settingViewController setVisible:NO];
+
+
     YXItemListController *yxItemListController = [[YXItemListController alloc] initWithNibName:@"YXItemListController" bundle:nil];
     self.navController = [[UINavigationController alloc] initWithRootViewController:yxItemListController];
 //    [self.navController pushViewController:yxItemListController animated:YES];
-    self.window.rootViewController = self.navController;
+//    self.window.rootViewController = self.navController;
+    [self.window addSubview:self.navController.view];
     [self.window makeKeyAndVisible];
     [[YXDB alloc] initDatabase];
     return YES;
+}
+
+- (void)makeSettingViewVisible {
+    [self.settingViewController setVisible:YES];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
