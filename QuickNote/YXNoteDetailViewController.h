@@ -12,7 +12,6 @@
 
 @property (nonatomic)NSInteger noteid;
 @property (strong, nonatomic) NSDictionary *currentNote;
-@property (strong, nonatomic) IBOutlet UITextField *NoteTitle;
 @property (strong, nonatomic) IBOutlet UITextField *NoteTag;
 
 @property (weak, nonatomic) IBOutlet UITextView *NoteContent;

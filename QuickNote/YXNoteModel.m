@@ -24,11 +24,7 @@
     NSString *title = self.title;
     NSString *tag = self.tag;
     NSString *updated = self.updated;
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    NSDate *day = [df dateFromString:updated];
-    df.dateFormat = @"MMM d";
-    updated = [df stringFromDate:day];
+    updated = [self formatDate:updated];
     row =  [[NSDictionary alloc] initWithObjectsAndKeys:noteId,@"id",title,@"title",tag,@"tags",updated,@"updated",nil];
     return row;
 }
@@ -36,8 +32,18 @@
 -(NSDictionary *)buildForNote {
     NSDictionary *row;
     NSString *noteId = [NSString stringWithFormat:@"%d",self.noteid];
-    row = [[NSDictionary alloc] initWithObjectsAndKeys:noteId,@"id",_title,@"title",_tag,@"tags",_desc,@"desc",_list,@"list",_created,@"created",_updated,@"updated", nil];
+    NSString *updated = [self formatDate:_updated];
+    row = [[NSDictionary alloc] initWithObjectsAndKeys:noteId,@"id",_title,@"title",_tag,@"tags",_desc,@"desc",_list,@"list",_created,@"created",updated,@"updated", nil];
     return row;
+}
+
+-(NSString *)formatDate:(NSString *)date{
+    //data format 2012-08-24 11:00:00;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *day = [df dateFromString:date];
+    df.dateFormat = @"MMM d";
+    return [df stringFromDate:day];
 }
 
 @end

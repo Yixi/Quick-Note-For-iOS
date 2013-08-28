@@ -23,9 +23,14 @@
         _tags = [t copy];
         NSMutableArray *array = [NSMutableArray arrayWithArray:[_tags componentsSeparatedByString:@" "]];
 
-        YXFillTagsView *fillTagsView = [[YXFillTagsView alloc] initWithFrame:CGRectMake(20, 40, 280, 22)];
-        [fillTagsView bindTags:array isOverFlowHide:YES];
-        [self.contentView addSubview:fillTagsView];
+        [[self.contentView viewWithTag:3] removeFromSuperview];
+
+        if(!([array count]==1 && [array[0] length]==0)){
+            YXFillTagsView *fillTagsView = [[YXFillTagsView alloc] initWithFrame:CGRectMake(20, 40, 280, 22)];
+            fillTagsView.tag = 3;
+            [fillTagsView bindTags:array isOverFlowHide:YES];
+            [self.contentView addSubview:fillTagsView];
+        }
     }
 }
 

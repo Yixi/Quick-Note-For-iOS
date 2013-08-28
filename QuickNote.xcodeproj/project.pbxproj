@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AF73051CB5C6F7DCF640D074 /* addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = AF730AC8C9251F501306F066 /* addbutton.png */; };
+		AF73083C88E3E594AC35741A /* horizontal-line.gif in Resources */ = {isa = PBXBuildFile; fileRef = AF730DEAB9C2F62A7E19658A /* horizontal-line.gif */; };
 		FA18FB3C17CC54DA00078D34 /* navbarbg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA18FB3B17CC54DA00078D34 /* navbarbg.png */; };
 		FA18FB3F17CC87BA00078D34 /* YXTagsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA18FB3E17CC87BA00078D34 /* YXTagsLabel.m */; };
 		FA18FB4117CC87E100078D34 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA18FB4017CC87E100078D34 /* QuartzCore.framework */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		AF730AC8C9251F501306F066 /* addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addbutton.png; sourceTree = "<group>"; };
+		AF730DEAB9C2F62A7E19658A /* horizontal-line.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "horizontal-line.gif"; sourceTree = "<group>"; };
 		FA18FB3B17CC54DA00078D34 /* navbarbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbarbg.png; sourceTree = "<group>"; };
 		FA18FB3D17CC87BA00078D34 /* YXTagsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTagsLabel.h; sourceTree = "<group>"; };
 		FA18FB3E17CC87BA00078D34 /* YXTagsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTagsLabel.m; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				FA18FB3B17CC54DA00078D34 /* navbarbg.png */,
 				AF730AC8C9251F501306F066 /* addbutton.png */,
+				AF730DEAB9C2F62A7E19658A /* horizontal-line.gif */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				FA18FB3C17CC54DA00078D34 /* navbarbg.png in Resources */,
 				AF73051CB5C6F7DCF640D074 /* addbutton.png in Resources */,
 				FA18FB4B17CC9F4300078D34 /* YXSettingViewController.xib in Resources */,
+				AF73083C88E3E594AC35741A /* horizontal-line.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

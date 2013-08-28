@@ -37,14 +37,49 @@
                                                                   target:self action:@selector(backToList:)];
     self.navigationItem.leftBarButtonItem = backButton;
 
+    [self setupView];
 
 }
+
+- (void)setupView{
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+
+    UIImage *scrollBg = [UIImage imageNamed:@"horizontal-line.gif"];
+    [_NoteContent setBackgroundColor:[UIColor colorWithPatternImage:scrollBg]];
+}
+
+
+- (void)keyboardWillShow:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGSize keyboardSize = [aValue CGRectValue].size;
+    NSLog(@"keyboard height %f",keyboardSize.height);
+//    self.view.frame = CGRectMake(0, -keyboardSize.height+20, self.view.frame.size.width, self.view.frame.size.height);
+    CGFloat currentHeight = _NoteContent.frame.size.height;
+    NSLog(@"currentheight %f",currentHeight);
+//    _NoteContent.frame.size.height = currentHeight - keyboardSize.height;
+}
+- (void)keyboardWillHide:(NSNotification *)notification{
+    NSLog(@"keyboard hide");
+}
+
+- (void)resizeNoteContentHeightByKeyboardHeight:(id)keyboardHeight{
+}
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark -
+
+
 - (void)setNoteid:(NSInteger)newNoteid {
     if(_noteid!=newNoteid){
         _noteid = newNoteid;
@@ -65,14 +100,15 @@
 
     if(self.noteid){
         self.currentNote = [[YXDB alloc] LoadNoteWithId:self.noteid];
-        _NoteTitle.text = [_currentNote objectForKey:@"title"];
+//        _NoteTitle.text = [_currentNote objectForKey:@"title"];
+        self.title = [_currentNote objectForKey:@"title"];
         _NoteTag.text = [_currentNote objectForKey:@"tags"];
         _NoteContent.text = [_currentNote objectForKey:@"desc"];
     }
 }
 
 - (void)saveNote{
-    NSString *title = _NoteTitle.text;
+    NSString *title = self.title;
     NSString *tag = _NoteTag.text;
     NSString *content = _NoteContent.text;
     [[YXDB alloc] SaveNote:_noteid title:title desc:content tag:tag];
