@@ -21,6 +21,12 @@
 }
 
 - (void)bindTags:(NSMutableArray *)tags isOverFlowHide:(BOOL)isHide {
+
+    NSArray *views = [self subviews];
+    for(UIView *view in views){
+        [view removeFromSuperview];
+    }
+
     CGFloat frameWidth = self.frame.size.width;
 
     CGFloat tagsTotalWidth = 0.0f;

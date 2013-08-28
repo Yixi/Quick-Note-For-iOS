@@ -8,9 +8,12 @@
 
 #import "YXNoteDetailViewController.h"
 #import "YXItemListController.h"
+#import "YXFillTagsView.h"
 #import "YXDB.h"
 
-@interface YXNoteDetailViewController ()
+@interface YXNoteDetailViewController (){
+    YXFillTagsView *fillTagsView;
+}
 - (void)initNote;
 @end
 
@@ -43,12 +46,25 @@
 
 - (void)setupView{
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
     UIImage *scrollBg = [UIImage imageNamed:@"horizontal-line.gif"];
     [_NoteContent setBackgroundColor:[UIColor colorWithPatternImage:scrollBg]];
+
+    //set note content padding
+    UIEdgeInsets padding = UIEdgeInsetsMake(20, 20, 20, 0);
+    _NoteContent.contentInset = padding;
+
+    CGRect frame = _NoteContent.frame;
+    CGRect insetFrame = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(0, padding.left, 0, padding.right));
+    CGFloat offsetX = frame.origin.x - (insetFrame.origin.x - ( padding.left + padding.right ) / 2);
+    insetFrame = CGRectApplyAffineTransform(insetFrame, CGAffineTransformMakeTranslation(offsetX, 0));
+    _NoteContent.frame = insetFrame;
+    _NoteContent.bounds = UIEdgeInsetsInsetRect(_NoteContent.bounds, UIEdgeInsetsMake(0, -padding.left, 0, -padding.right));
+    [_NoteContent scrollRectToVisible:CGRectMake(0,0,1,1) animated:NO];
+
 }
 
 
@@ -56,19 +72,25 @@
     NSDictionary *userInfo = [notification userInfo];
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGSize keyboardSize = [aValue CGRectValue].size;
-    NSLog(@"keyboard height %f",keyboardSize.height);
-//    self.view.frame = CGRectMake(0, -keyboardSize.height+20, self.view.frame.size.width, self.view.frame.size.height);
-    CGFloat currentHeight = _NoteContent.frame.size.height;
-    NSLog(@"currentheight %f",currentHeight);
-//    _NoteContent.frame.size.height = currentHeight - keyboardSize.height;
+
+    [self resizeNoteContentHeightByKeyboardHeight:keyboardSize.height];
+
 }
 - (void)keyboardWillHide:(NSNotification *)notification{
-    NSLog(@"keyboard hide");
+    [self restoreNoteContentHeight];
 }
 
-- (void)resizeNoteContentHeightByKeyboardHeight:(id)keyboardHeight{
+- (void)resizeNoteContentHeightByKeyboardHeight:(CGFloat)keyboardHeight{
+//    NSLog(@"%f",self.view.frame.size.height);
+    CGFloat noteContentHeight = self.view.frame.size.height - _NoteContent.frame.origin.y;
+    CGFloat resizeHeight = noteContentHeight - keyboardHeight;
+    _NoteContent.frame = CGRectMake(_NoteContent.frame.origin.x, _NoteContent.frame.origin.y, _NoteContent.frame.size.width, resizeHeight);
 }
 
+- (void)restoreNoteContentHeight{
+    CGFloat noteContentHeight = self.view.frame.size.height - _NoteContent.frame.origin.y;
+    _NoteContent.frame = CGRectMake(_NoteContent.frame.origin.x, _NoteContent.frame.origin.y, _NoteContent.frame.size.width, noteContentHeight);
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -94,6 +116,32 @@
 //    [[YXItemListController alloc] reloadData];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)TouchWithTags:(id)sender{
+    fillTagsView.hidden = YES;
+    _NoteTag.hidden = NO;
+    [_NoteTag becomeFirstResponder];
+}
+- (void)reloadTagView{
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[_NoteTag.text componentsSeparatedByString:@" "]];
+    if(!([array count]==1 && [array[0] length]==0)){
+        if(fillTagsView){
+            [fillTagsView bindTags:array isOverFlowHide:YES];
+        }else{
+            fillTagsView = [[YXFillTagsView alloc] initWithFrame:CGRectMake(101, 18, 181.0, 30.0)];
+            fillTagsView.tag = 4;
+            [fillTagsView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(TouchWithTags:)]];
+            [fillTagsView bindTags:array isOverFlowHide:YES];
+            [self.view addSubview:fillTagsView];
+        }
+        _NoteTag.hidden = YES;
+        fillTagsView.hidden  = NO;
+    }else{
+        [fillTagsView removeFromSuperview];
+        _NoteTag.hidden = NO;
+        fillTagsView.hidden  = NO;
+    }
+}
 #pragma mark - Note;
 
 - (void)initNote{
@@ -102,8 +150,12 @@
         self.currentNote = [[YXDB alloc] LoadNoteWithId:self.noteid];
 //        _NoteTitle.text = [_currentNote objectForKey:@"title"];
         self.title = [_currentNote objectForKey:@"title"];
-        _NoteTag.text = [_currentNote objectForKey:@"tags"];
+        NSString *tags = [_currentNote objectForKey:@"tags"];
+        _NoteTag.text = tags;
         _NoteContent.text = [_currentNote objectForKey:@"desc"];
+
+        [self reloadTagView];
+
     }
 }
 
@@ -146,7 +198,11 @@
     [self saveNote];
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"end title");
+    if(textField == _NoteTag){
+//        NSLog(@"end tags");
+        [self reloadTagView];
+    }
+
     [self saveNote];
 }
 
