@@ -69,6 +69,29 @@
 
     //noteContent
 
+    [self setupNoteContent];
+
+
+    //tag label
+
+    UILabel *tagTitle = [[UILabel alloc] initWithFrame:CGRectMake(41, 24, 50, 21)];
+    tagTitle.text = @"Tags:";
+    [_scrollView addSubview:tagTitle];
+
+    //tag input
+    _NoteTag = [[UITextField alloc] initWithFrame:CGRectMake(99, 20, 181, 30)];
+    _NoteTag.delegate = self;
+    [_scrollView addSubview:_NoteTag];
+
+    //fill tag view
+    _fillTagsView = [[YXFillTagsView alloc] initWithFrame:CGRectMake(99, 20, 181, 30)];
+    [_scrollView addSubview:_fillTagsView];
+    [_fillTagsView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(TouchWithTags:)]];
+
+
+}
+
+- (void)setupNoteContent{
     NoteViewMinHeight = _scrollView.frame.size.height - 58;
     _NoteContent = [[UITextView alloc] initWithFrame:CGRectMake(0, 58, 320, NoteViewMinHeight)];
     _NoteContent.scrollEnabled = NO;
@@ -89,25 +112,6 @@
     _NoteContent.frame = insetFrame;
     _NoteContent.bounds = UIEdgeInsetsInsetRect(_NoteContent.bounds, UIEdgeInsetsMake(0, -padding.left, 0, -padding.right));
     [_NoteContent scrollRectToVisible:CGRectMake(0,0,1,1) animated:NO];
-
-
-    //tag label
-
-    UILabel *tagTitle = [[UILabel alloc] initWithFrame:CGRectMake(41, 24, 50, 21)];
-    tagTitle.text = @"Tags:";
-    [_scrollView addSubview:tagTitle];
-
-    //tag input
-    _NoteTag = [[UITextField alloc] initWithFrame:CGRectMake(99, 20, 181, 30)];
-    _NoteTag.delegate = self;
-    [_scrollView addSubview:_NoteTag];
-
-    //fill tag view
-    _fillTagsView = [[YXFillTagsView alloc] initWithFrame:CGRectMake(99, 20, 181, 30)];
-    [_scrollView addSubview:_fillTagsView];
-    [_fillTagsView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(TouchWithTags:)]];
-
-
 }
 
 
