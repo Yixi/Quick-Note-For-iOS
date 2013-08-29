@@ -11,5 +11,6 @@
 @interface YXFillTagsView : UIView
 
 - (void)bindTags:(NSMutableArray *)tags isOverFlowHide:(BOOL)isHide;
+- (void)emptyTags;
 
 @end

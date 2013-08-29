@@ -12,7 +12,7 @@
 #import "YXDB.h"
 
 @interface YXNoteDetailViewController (){
-    YXFillTagsView *fillTagsView;
+    CGFloat NoteViewMinHeight;
 }
 - (void)initNote;
 @end
@@ -33,15 +33,23 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self initNote];
+
 
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Notes"
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self action:@selector(backToList:)];
     self.navigationItem.leftBarButtonItem = backButton;
 
-    [self setupView];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(saveButton:)];
+    self.navigationItem.rightBarButtonItem = saveButton;
 
+
+
+    [self setupView];
+    [self initNote];
 }
 
 - (void)setupView{
@@ -50,11 +58,28 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
+    //Scroll view
+
+    _scrollView = [[UIScrollView alloc] init];
+    _scrollView.frame = CGRectMake(0, 0,
+            self.view.frame.size.width, [UIScreen mainScreen].bounds.size.height - 20 - self.navigationController.navigationBar.frame.size.height);
+    [self.view addSubview:_scrollView];
+
+
+
+    //noteContent
+
+    NoteViewMinHeight = _scrollView.frame.size.height - 58;
+    _NoteContent = [[UITextView alloc] initWithFrame:CGRectMake(0, 58, 320, NoteViewMinHeight)];
+    _NoteContent.scrollEnabled = NO;
+    _NoteContent.delegate = self;
+    [_scrollView addSubview:_NoteContent];
+
     UIImage *scrollBg = [UIImage imageNamed:@"horizontal-line.gif"];
     [_NoteContent setBackgroundColor:[UIColor colorWithPatternImage:scrollBg]];
 
     //set note content padding
-    UIEdgeInsets padding = UIEdgeInsetsMake(20, 20, 20, 0);
+    UIEdgeInsets padding = UIEdgeInsetsMake(20, 30, 20, 20);
     _NoteContent.contentInset = padding;
 
     CGRect frame = _NoteContent.frame;
@@ -64,6 +89,24 @@
     _NoteContent.frame = insetFrame;
     _NoteContent.bounds = UIEdgeInsetsInsetRect(_NoteContent.bounds, UIEdgeInsetsMake(0, -padding.left, 0, -padding.right));
     [_NoteContent scrollRectToVisible:CGRectMake(0,0,1,1) animated:NO];
+
+
+    //tag label
+
+    UILabel *tagTitle = [[UILabel alloc] initWithFrame:CGRectMake(41, 24, 50, 21)];
+    tagTitle.text = @"Tags:";
+    [_scrollView addSubview:tagTitle];
+
+    //tag input
+    _NoteTag = [[UITextField alloc] initWithFrame:CGRectMake(99, 20, 181, 30)];
+    _NoteTag.delegate = self;
+    [_scrollView addSubview:_NoteTag];
+
+    //fill tag view
+    _fillTagsView = [[YXFillTagsView alloc] initWithFrame:CGRectMake(99, 20, 181, 30)];
+    [_scrollView addSubview:_fillTagsView];
+    [_fillTagsView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(TouchWithTags:)]];
+
 
 }
 
@@ -82,14 +125,14 @@
 
 - (void)resizeNoteContentHeightByKeyboardHeight:(CGFloat)keyboardHeight{
 //    NSLog(@"%f",self.view.frame.size.height);
-    CGFloat noteContentHeight = self.view.frame.size.height - _NoteContent.frame.origin.y;
+    CGFloat noteContentHeight = self.view.frame.size.height - _scrollView.frame.origin.y;
     CGFloat resizeHeight = noteContentHeight - keyboardHeight;
-    _NoteContent.frame = CGRectMake(_NoteContent.frame.origin.x, _NoteContent.frame.origin.y, _NoteContent.frame.size.width, resizeHeight);
+    _scrollView.frame = CGRectMake(_scrollView.frame.origin.x, _scrollView.frame.origin.y, _scrollView.frame.size.width, resizeHeight);
 }
 
 - (void)restoreNoteContentHeight{
-    CGFloat noteContentHeight = self.view.frame.size.height - _NoteContent.frame.origin.y;
-    _NoteContent.frame = CGRectMake(_NoteContent.frame.origin.x, _NoteContent.frame.origin.y, _NoteContent.frame.size.width, noteContentHeight);
+    CGFloat noteContentHeight = self.view.frame.size.height - _scrollView.frame.origin.y;
+    _scrollView.frame = CGRectMake(_scrollView.frame.origin.x, _scrollView.frame.origin.y, _scrollView.frame.size.width, noteContentHeight);
 }
 
 - (void)didReceiveMemoryWarning
@@ -117,29 +160,27 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)saveButton:(id)sender{
+    [self.view endEditing:YES];
+}
+
 - (void)TouchWithTags:(id)sender{
-    fillTagsView.hidden = YES;
+    _fillTagsView.hidden = YES;
     _NoteTag.hidden = NO;
     [_NoteTag becomeFirstResponder];
 }
 - (void)reloadTagView{
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[_NoteTag.text componentsSeparatedByString:@" "]];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[_NoteTag.text componentsSeparatedByString:@""]];
     if(!([array count]==1 && [array[0] length]==0)){
-        if(fillTagsView){
-            [fillTagsView bindTags:array isOverFlowHide:YES];
-        }else{
-            fillTagsView = [[YXFillTagsView alloc] initWithFrame:CGRectMake(101, 18, 181.0, 30.0)];
-            fillTagsView.tag = 4;
-            [fillTagsView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(TouchWithTags:)]];
-            [fillTagsView bindTags:array isOverFlowHide:YES];
-            [self.view addSubview:fillTagsView];
-        }
+
+        [_fillTagsView bindTags:array isOverFlowHide:YES];
+
         _NoteTag.hidden = YES;
-        fillTagsView.hidden  = NO;
+        _fillTagsView.hidden  = NO;
     }else{
-        [fillTagsView removeFromSuperview];
+        [_fillTagsView emptyTags];
         _NoteTag.hidden = NO;
-        fillTagsView.hidden  = NO;
+        _fillTagsView.hidden  = NO;
     }
 }
 #pragma mark - Note;
@@ -153,7 +194,7 @@
         NSString *tags = [_currentNote objectForKey:@"tags"];
         _NoteTag.text = tags;
         _NoteContent.text = [_currentNote objectForKey:@"desc"];
-
+        [self resetContentHeight];
         [self reloadTagView];
 
     }
@@ -169,25 +210,45 @@
 
 #pragma mark - UITextView
 
+- (void)resetContentHeight{
+    CGRect frame = _NoteContent.frame;
+    frame.size.height = NoteViewMinHeight;
+    _NoteContent.frame = frame;
+
+    CGSize size = _scrollView.contentSize;
+    size.height = frame.size.height + _NoteContent.frame.origin.y;
+    _scrollView.contentSize = size;
+    [self adjustContentHeight];
+}
+
+- (void)adjustContentHeight{
+    if([_NoteContent.text length]>0){
+        CGRect frame = _NoteContent.frame;
+        if(_NoteContent.contentSize.height > NoteViewMinHeight){
+
+            frame.size.height = _NoteContent.contentSize.height;
+            _NoteContent.frame = frame;
+
+            CGSize size = _scrollView.contentSize;
+            size.height = frame.size.height + _NoteContent.frame.origin.y;
+            _scrollView.contentSize = size;
+
+        }
+    }
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
     [super touchesBegan:touches withEvent:event];
 }
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    NSLog(@"textview begin editing");
-    return YES;
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    NSLog(@"editing");
-}
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
     NSLog(@"End edting");
     [self saveNote];
 }
 - (void)textViewDidChange:(UITextView *)textView {
+    [self adjustContentHeight];
     [self saveNote];
 }
 

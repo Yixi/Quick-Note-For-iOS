@@ -55,4 +55,10 @@
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, tagsTotalHeight);
 }
 
+- (void)emptyTags {
+    NSArray *views = [self subviews];
+    for(UIView *view in views){
+        [view removeFromSuperview];
+    }
+}
 @end
