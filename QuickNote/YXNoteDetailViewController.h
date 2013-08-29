@@ -10,7 +10,7 @@
 
 @class YXFillTagsView;
 
-@interface YXNoteDetailViewController : UIViewController <UITextViewDelegate,UITextFieldDelegate>
+@interface YXNoteDetailViewController : UIViewController <UITextViewDelegate,UITextFieldDelegate,UIAlertViewDelegate>
 
 @property (nonatomic)NSInteger noteid;
 @property (strong, nonatomic) NSDictionary *currentNote;
