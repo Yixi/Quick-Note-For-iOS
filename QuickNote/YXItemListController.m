@@ -197,6 +197,11 @@
     }
 
     YXItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(!cell){
+        UINib *nib = [UINib nibWithNibName:@"YXItemCell" bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
 
     NSUInteger row = [indexPath row];
     NSDictionary *rowData = [self.testData objectAtIndex:row];

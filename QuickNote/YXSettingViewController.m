@@ -104,6 +104,7 @@
         }else{
             [[currentWindow viewWithTag:20] removeFromSuperview];
             YXItemListController *yxItemListController = [[YXItemListController alloc] initView];
+            appDelegate.navController = nil;
             appDelegate.navController = [[UINavigationController alloc] initWithRootViewController:yxItemListController];
             appDelegate.navController.view.tag = 20;
             appDelegate.navController.view.frame = CGRectMake(270.f,
@@ -122,6 +123,7 @@
 
             [[currentWindow viewWithTag:20] removeFromSuperview]; //remove AllNote List
             YXTrashController *trashController = [[YXTrashController alloc] initView];
+            appDelegate.navController = nil;
             appDelegate.navController = [[UINavigationController alloc] initWithRootViewController:trashController];
             appDelegate.navController.view.tag = 20;
             appDelegate.navController.view.frame = CGRectMake(270.f,

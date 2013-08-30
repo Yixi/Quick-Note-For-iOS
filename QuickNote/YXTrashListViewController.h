@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class YXTrashDetailController;
 @interface YXTrashListViewController : UITableViewController{
     BOOL viewIsOutOfStage;
 }
 
 @property (strong, nonatomic) NSMutableArray *NoteList;
+@property (strong, nonatomic) YXTrashDetailController *trashDetailViewController;
 
 @end

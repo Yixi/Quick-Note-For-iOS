@@ -8,6 +8,7 @@
 
 #import "YXTrashListViewController.h"
 #import "YXItemCell.h"
+#import "YXTrashDetailController.h"
 #import "YXAppDelegate.h"
 
 @interface YXTrashListViewController ()
@@ -113,6 +114,11 @@
     }
 
     YXItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(!cell){
+        UINib *nib = [UINib nibWithNibName:@"YXItemCell" bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
 
     NSUInteger row = [indexPath row];
     NSDictionary *rowData = [self.NoteList objectAtIndex:row];
@@ -171,7 +177,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"click");
+    if(!self.trashDetailViewController){
+        self.trashDetailViewController = [[YXTrashDetailController alloc] initWithNibName:@"YXTrashDetailController" bundle:nil];
+    }
+    NSDictionary *currentNote = self.NoteList[indexPath.row];
+    self.trashDetailViewController.noteid = [[currentNote objectForKey:@"id"] intValue];
+
+    [self.navigationController pushViewController:self.trashDetailViewController animated:YES];
+
+
 }
 
 @end

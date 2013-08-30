@@ -80,7 +80,7 @@
         NSAssert(0, @"Failed to open database");
     }
 
-    NSString *getAllNotesQuery = [NSString stringWithFormat:@"SELECT id,title,tag,updated FROM notes WHERE list='%@'",list];
+    NSString *getAllNotesQuery = [NSString stringWithFormat:@"SELECT id,title,tag,updated FROM notes WHERE list='%@' ORDER BY updated",list];
     sqlite3_stmt *stmt;
     if(sqlite3_prepare_v2(dataBase, [getAllNotesQuery UTF8String], -1, &stmt, nil) == SQLITE_OK){
         while (sqlite3_step(stmt) == SQLITE_ROW){
