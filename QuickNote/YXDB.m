@@ -65,6 +65,14 @@
 #pragma mark - Database for notes
 
 - (NSMutableArray *)getAllNotes {
+    return [self getNotesByList:@""];
+}
+- (NSMutableArray *)getTrashNotes {
+    return [self getNotesByList:@"trash"];
+}
+
+
+- (NSMutableArray *)getNotesByList:(NSString *)list {
     NSMutableArray *sqlArray = [[NSMutableArray alloc] init];
     NSMutableArray *returnArray = [[NSMutableArray alloc] init];
     if(sqlite3_open([[self dbFilePath] UTF8String], &dataBase)!= SQLITE_OK){
@@ -72,7 +80,7 @@
         NSAssert(0, @"Failed to open database");
     }
 
-    NSString *getAllNotesQuery = @"SELECT id,title,tag,updated FROM notes WHERE list=''";
+    NSString *getAllNotesQuery = [NSString stringWithFormat:@"SELECT id,title,tag,updated FROM notes WHERE list='%@'",list];
     sqlite3_stmt *stmt;
     if(sqlite3_prepare_v2(dataBase, [getAllNotesQuery UTF8String], -1, &stmt, nil) == SQLITE_OK){
         while (sqlite3_step(stmt) == SQLITE_ROW){

@@ -31,6 +31,7 @@
 
     YXItemListController *yxItemListController = [[YXItemListController alloc] initWithNibName:@"YXItemListController" bundle:nil];
     self.navController = [[UINavigationController alloc] initWithRootViewController:yxItemListController];
+    self.navController.view.tag = 20;
 //    [self.navController pushViewController:yxItemListController animated:YES];
 //    self.window.rootViewController = self.navController;
     [self.window addSubview:self.navController.view];

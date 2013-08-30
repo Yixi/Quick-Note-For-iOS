@@ -30,6 +30,14 @@
     return self;
 }
 
+- (id)initView{
+    self = [super initWithNibName:@"YXItemListController" bundle:nil];
+    if(self){
+        self.testData = [[YXDB alloc] getAllNotes];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

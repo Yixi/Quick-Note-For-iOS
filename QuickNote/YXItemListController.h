@@ -18,4 +18,5 @@
 @property (strong, nonatomic) YXNoteDetailViewController *noteDetailViewController;
 
 - (void)reloadData;
+- (id)initView;
 @end

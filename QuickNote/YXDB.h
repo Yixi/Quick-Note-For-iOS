@@ -16,6 +16,7 @@
 
 - (void)initDatabase;
 - (NSMutableArray *)getAllNotes;
+- (NSMutableArray *)getTrashNotes;
 - (id)insertNewNote:(NSString *)title tag:(NSString *)tag desc:(NSString *)desc;
 - (id)LoadNoteWithId:(NSInteger)noteid;
 - (void)SaveNote:(NSInteger)noteid title:(NSString *)title desc:(NSString *)desc tag:(NSString *)tag;

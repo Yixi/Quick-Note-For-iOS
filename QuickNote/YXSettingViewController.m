@@ -9,6 +9,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import <PXEngine/PXEngine.h>
 #import "YXSettingViewController.h"
+#import "YXTrashController.h"
+#import "YXTrashListViewController.h"
+#import "YXAppDelegate.h"
+#import "YXItemListController.h"
 #import "YXUtil.h"
 
 @interface YXSettingViewController (){
@@ -59,7 +63,11 @@
     [self.view addSubview:folderView];
     [folderView setBackgroundColor:[UIColor colorWithPatternImage:settingView_bg]];
 }
-
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 #pragma mark - folders
 
@@ -85,11 +93,57 @@
     return 35.0;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIWindow *currentWindow = [UIApplication sharedApplication].keyWindow;
+    YXAppDelegate *appDelegate = (YXAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    if([indexPath row] == 0){
+        //click in all Notes
+        if([appDelegate.navController.topViewController isKindOfClass:[YXItemListController class]]){
+            NSLog(@"in list");
+        }else{
+            [[currentWindow viewWithTag:20] removeFromSuperview];
+            YXItemListController *yxItemListController = [[YXItemListController alloc] initView];
+            appDelegate.navController = [[UINavigationController alloc] initWithRootViewController:yxItemListController];
+            appDelegate.navController.view.tag = 20;
+            appDelegate.navController.view.frame = CGRectMake(270.f,
+                    appDelegate.navController.view.frame.origin.y,
+                    appDelegate.navController.view.frame.size.width,
+                    appDelegate.navController.view.frame.size.height);
+            [currentWindow addSubview:appDelegate.navController.view];
+        }
+        [self restoreViewLocation:appDelegate.navController.view];
+
+    }else if([indexPath row]==1){ // click in trash
+
+        if([appDelegate.navController.topViewController isKindOfClass:[YXTrashController class]]){
+            NSLog(@"is current");
+        } else{
+
+            [[currentWindow viewWithTag:20] removeFromSuperview]; //remove AllNote List
+            YXTrashController *trashController = [[YXTrashController alloc] initView];
+            appDelegate.navController = [[UINavigationController alloc] initWithRootViewController:trashController];
+            appDelegate.navController.view.tag = 20;
+            appDelegate.navController.view.frame = CGRectMake(270.f,
+                    appDelegate.navController.view.frame.origin.y,
+                    appDelegate.navController.view.frame.size.width,
+                    appDelegate.navController.view.frame.size.height);
+            [currentWindow addSubview:appDelegate.navController.view];
+        }
+        [self restoreViewLocation:appDelegate.navController.view];
+    }
 }
+
+
+#pragma mark - UI
+
+- (void)restoreViewLocation:(UIView *)view{
+    [UIView animateWithDuration:0.3 animations:^{
+        view.frame = CGRectMake(0, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+    }];
+}
+
+
 
 #pragma mark - public method;
 

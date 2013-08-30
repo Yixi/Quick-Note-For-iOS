@@ -41,6 +41,9 @@
 		FA763EDD179845A100EDED4B /* YXItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA763EDC179845A100EDED4B /* YXItemCell.m */; };
 		FA763EE11798467C00EDED4B /* YXItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA763EE01798467C00EDED4B /* YXItemCell.xib */; };
 		FAA3C5CD17D046A300606131 /* YXUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA3C5CC17D046A300606131 /* YXUtil.m */; };
+		FAA3C5D117D07AEA00606131 /* YXTrashListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA3C5CF17D07AEA00606131 /* YXTrashListViewController.m */; };
+		FAA3C5D217D07AEA00606131 /* YXTrashListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA3C5D017D07AEA00606131 /* YXTrashListViewController.xib */; };
+		FAA3C5DB17D0916400606131 /* YXTrashController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA3C5DA17D0916400606131 /* YXTrashController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +94,11 @@
 		FA763EE01798467C00EDED4B /* YXItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXItemCell.xib; sourceTree = "<group>"; };
 		FAA3C5CB17D046A300606131 /* YXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUtil.h; sourceTree = "<group>"; };
 		FAA3C5CC17D046A300606131 /* YXUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUtil.m; sourceTree = "<group>"; };
+		FAA3C5CE17D07AEA00606131 /* YXTrashListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTrashListViewController.h; sourceTree = "<group>"; };
+		FAA3C5CF17D07AEA00606131 /* YXTrashListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTrashListViewController.m; sourceTree = "<group>"; };
+		FAA3C5D017D07AEA00606131 /* YXTrashListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXTrashListViewController.xib; sourceTree = "<group>"; };
+		FAA3C5D917D0916400606131 /* YXTrashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTrashController.h; sourceTree = "<group>"; };
+		FAA3C5DA17D0916400606131 /* YXTrashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTrashController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +194,11 @@
 				FA18FB4917CC9F4300078D34 /* YXSettingViewController.xib */,
 				FAA3C5CB17D046A300606131 /* YXUtil.h */,
 				FAA3C5CC17D046A300606131 /* YXUtil.m */,
+				FAA3C5CE17D07AEA00606131 /* YXTrashListViewController.h */,
+				FAA3C5CF17D07AEA00606131 /* YXTrashListViewController.m */,
+				FAA3C5D017D07AEA00606131 /* YXTrashListViewController.xib */,
+				FAA3C5D917D0916400606131 /* YXTrashController.h */,
+				FAA3C5DA17D0916400606131 /* YXTrashController.m */,
 			);
 			path = QuickNote;
 			sourceTree = "<group>";
@@ -272,6 +285,7 @@
 				AF730DEE5492C88C1AF075D5 /* verline.png in Resources */,
 				AF73064D7FC057EBA14E984E /* settingheader.png in Resources */,
 				AF730BA5CB663854A5E41D20 /* settingbg.png in Resources */,
+				FAA3C5D217D07AEA00606131 /* YXTrashListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +307,8 @@
 				FA18FB4417CC8A8000078D34 /* YXFillTagsView.m in Sources */,
 				FA18FB4A17CC9F4300078D34 /* YXSettingViewController.m in Sources */,
 				FAA3C5CD17D046A300606131 /* YXUtil.m in Sources */,
+				FAA3C5D117D07AEA00606131 /* YXTrashListViewController.m in Sources */,
+				FAA3C5DB17D0916400606131 /* YXTrashController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
