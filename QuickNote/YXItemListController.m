@@ -13,6 +13,7 @@
 #import "YXNoteDetailViewController.h"
 #import "YXDB.h"
 #import "YXAppDelegate.h"
+#import "YXUtil.h"
 
 @interface YXItemListController ()
 
@@ -77,18 +78,12 @@
 
     UIImage *navbar_bg = [UIImage imageNamed:@"navbarbg.png"];
     CGSize titlesize = self.navigationController.navigationBar.bounds.size;
-    navbar_bg = [self scaleToSize:navbar_bg size:titlesize];
+    navbar_bg = [[YXUtil alloc] scaleToSize:navbar_bg size:titlesize];
     [self.navigationController.navigationBar setBackgroundImage:navbar_bg forBarMetrics:UIBarMetricsDefault];
 
 }
 
-- (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)size{
-    UIGraphicsBeginImageContext(size);
-    [img drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return  scaledImage;
-}
+
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -147,7 +142,7 @@
 
 - (void)addNote:(id)sender{
     NSLog(@"Add Note");
-    NSDictionary *newInsertnote = [[YXDB alloc] insertNewNote:@"New Note" tag:@"ios" desc:@""];
+    NSDictionary *newInsertnote = [[YXDB alloc] insertNewNote:@"New Note" tag:@"" desc:@""];
     if(!_testData){
         _testData = [[NSMutableArray alloc] init];
     }

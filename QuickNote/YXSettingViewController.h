@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YXSettingViewController : UIViewController
+@interface YXSettingViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
 - (void)setVisible:(BOOL)visible;
+@property (weak, nonatomic) IBOutlet UINavigationBar *viewTitle;
 
 @end

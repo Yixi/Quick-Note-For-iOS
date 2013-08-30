@@ -293,20 +293,29 @@
 - (void)scrollToCursor{
     if(_NoteContent.selectedRange.location!=NSNotFound){
 
-        NSRange range;
-        range.location = _NoteContent.selectedRange.location;
-        range.length = _NoteContent.text.length - range.location;
-        NSString *string = [_NoteContent.text stringByReplacingCharactersInRange:range withString:@""];
-//        NSLog(string);
-        CGSize size = [string sizeWithFont:_NoteContent.font constrainedToSize:_NoteContent.bounds.size lineBreakMode:NSLineBreakByCharWrapping];
-        CGRect viewRect = _NoteContent.frame;
-        CGFloat scrollHeight =  size.height;
-        if(scrollHeight<105){
-            scrollHeight = 0.0f;
-        }else{
-            scrollHeight -=105;
+//        NSRange range;
+//        range.location = _NoteContent.selectedRange.location;
+//        range.length = _NoteContent.text.length - range.location;
+//        NSString *string = [_NoteContent.text stringByReplacingCharactersInRange:range withString:@""];
+////        NSLog(string);
+//        CGSize size = [string sizeWithFont:_NoteContent.font constrainedToSize:_NoteContent.bounds.size lineBreakMode:NSLineBreakByCharWrapping];
+//        CGRect viewRect = _NoteContent.frame;
+//        CGFloat scrollHeight =  size.height + viewRect.origin.y;
+////        if(scrollHeight<105){
+////            scrollHeight = 0.0f;
+////        }else{
+////            scrollHeight -=105;
+////        }
+
+        CGFloat minHeight = self.view.frame.size.height - 300;
+        CGRect caretRect = [_NoteContent caretRectForPosition:_NoteContent.selectedTextRange.end];
+        CGFloat caretTop = CGRectGetMinY(caretRect);
+        CGFloat scrollHeight = caretTop+_NoteContent.frame.origin.y - minHeight;
+        if(scrollHeight<0){
+            scrollHeight = 0;
         }
-        CGPoint final = CGPointMake(0, scrollHeight);
+
+        CGPoint final = CGPointMake(0,scrollHeight );
         [_scrollView setContentOffset:final animated:YES];
     }
 }

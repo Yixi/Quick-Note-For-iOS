@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		AF73051CB5C6F7DCF640D074 /* addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = AF730AC8C9251F501306F066 /* addbutton.png */; };
+		AF73064D7FC057EBA14E984E /* settingheader.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7306C1D5C4D54913974AFB /* settingheader.png */; };
 		AF73083C88E3E594AC35741A /* horizontal-line.gif in Resources */ = {isa = PBXBuildFile; fileRef = AF730DEAB9C2F62A7E19658A /* horizontal-line.gif */; };
+		AF730BA5CB663854A5E41D20 /* settingbg.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7308F06BB3081D75C314FE /* settingbg.png */; };
 		AF730DEE5492C88C1AF075D5 /* verline.png in Resources */ = {isa = PBXBuildFile; fileRef = AF73002DC081217E4382EB46 /* verline.png */; };
 		AF730FD410A7D68946184F7E /* horline.png in Resources */ = {isa = PBXBuildFile; fileRef = AF7300830575D7EB290B618F /* horline.png */; };
 		FA18FB3C17CC54DA00078D34 /* navbarbg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA18FB3B17CC54DA00078D34 /* navbarbg.png */; };
@@ -38,11 +40,14 @@
 		FA763ED31798403500EDED4B /* YXItemListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA763ED11798403500EDED4B /* YXItemListController.xib */; };
 		FA763EDD179845A100EDED4B /* YXItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA763EDC179845A100EDED4B /* YXItemCell.m */; };
 		FA763EE11798467C00EDED4B /* YXItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA763EE01798467C00EDED4B /* YXItemCell.xib */; };
+		FAA3C5CD17D046A300606131 /* YXUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA3C5CC17D046A300606131 /* YXUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AF73002DC081217E4382EB46 /* verline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = verline.png; sourceTree = "<group>"; };
 		AF7300830575D7EB290B618F /* horline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horline.png; sourceTree = "<group>"; };
+		AF7306C1D5C4D54913974AFB /* settingheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingheader.png; sourceTree = "<group>"; };
+		AF7308F06BB3081D75C314FE /* settingbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingbg.png; sourceTree = "<group>"; };
 		AF730AC8C9251F501306F066 /* addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addbutton.png; sourceTree = "<group>"; };
 		AF730DEAB9C2F62A7E19658A /* horizontal-line.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "horizontal-line.gif"; sourceTree = "<group>"; };
 		FA18FB3B17CC54DA00078D34 /* navbarbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbarbg.png; sourceTree = "<group>"; };
@@ -84,6 +89,8 @@
 		FA763EDB179845A100EDED4B /* YXItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXItemCell.h; sourceTree = "<group>"; };
 		FA763EDC179845A100EDED4B /* YXItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXItemCell.m; sourceTree = "<group>"; };
 		FA763EE01798467C00EDED4B /* YXItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXItemCell.xib; sourceTree = "<group>"; };
+		FAA3C5CB17D046A300606131 /* YXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUtil.h; sourceTree = "<group>"; };
+		FAA3C5CC17D046A300606131 /* YXUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +119,8 @@
 				AF730DEAB9C2F62A7E19658A /* horizontal-line.gif */,
 				AF7300830575D7EB290B618F /* horline.png */,
 				AF73002DC081217E4382EB46 /* verline.png */,
+				AF7306C1D5C4D54913974AFB /* settingheader.png */,
+				AF7308F06BB3081D75C314FE /* settingbg.png */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -175,6 +184,8 @@
 				FA18FB4717CC9F4300078D34 /* YXSettingViewController.h */,
 				FA18FB4817CC9F4300078D34 /* YXSettingViewController.m */,
 				FA18FB4917CC9F4300078D34 /* YXSettingViewController.xib */,
+				FAA3C5CB17D046A300606131 /* YXUtil.h */,
+				FAA3C5CC17D046A300606131 /* YXUtil.m */,
 			);
 			path = QuickNote;
 			sourceTree = "<group>";
@@ -259,6 +270,8 @@
 				AF73083C88E3E594AC35741A /* horizontal-line.gif in Resources */,
 				AF730FD410A7D68946184F7E /* horline.png in Resources */,
 				AF730DEE5492C88C1AF075D5 /* verline.png in Resources */,
+				AF73064D7FC057EBA14E984E /* settingheader.png in Resources */,
+				AF730BA5CB663854A5E41D20 /* settingbg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +292,7 @@
 				FA18FB3F17CC87BA00078D34 /* YXTagsLabel.m in Sources */,
 				FA18FB4417CC8A8000078D34 /* YXFillTagsView.m in Sources */,
 				FA18FB4A17CC9F4300078D34 /* YXSettingViewController.m in Sources */,
+				FAA3C5CD17D046A300606131 /* YXUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
