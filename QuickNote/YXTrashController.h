@@ -8,7 +8,7 @@
 
 #import "YXTrashListViewController.h"
 
-@interface YXTrashController : YXTrashListViewController
+@interface YXTrashController : YXTrashListViewController <UIAlertViewDelegate>
 
 - (id)initView;
 

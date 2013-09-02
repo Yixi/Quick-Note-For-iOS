@@ -202,5 +202,29 @@
     sqlite3_close(dataBase);
 }
 
+- (void)emptyTrashByList:(NSString *)list{
+    if(sqlite3_open([[self dbFilePath] UTF8String], &dataBase)!= SQLITE_OK){
+        sqlite3_close(dataBase);
+        NSAssert(0, @"Failed to open database");
+    }
+    sqlite3_stmt *stmt;
+
+    char *emptyQuery = "DELETE FROM notes WHERE list=?;";
+    if(sqlite3_prepare_v2(dataBase, emptyQuery, -1, &stmt, nil) == SQLITE_OK){
+        sqlite3_bind_text(stmt, 1, [list UTF8String], -1, NULL);
+    }
+    if(sqlite3_step(stmt)!= SQLITE_DONE){
+        NSLog(@"error in empty %@",list);
+    }
+
+
+    sqlite3_finalize(stmt);
+    sqlite3_close(dataBase);
+}
+
+- (void)emptyTrash {
+    [self emptyTrashByList:@"trash"];
+}
+
 @end
 

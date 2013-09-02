@@ -21,4 +21,6 @@
 - (id)LoadNoteWithId:(NSInteger)noteid;
 - (void)SaveNote:(NSInteger)noteid title:(NSString *)title desc:(NSString *)desc tag:(NSString *)tag;
 - (void)deleteNoteById:(NSInteger)noteid;
+
+- (void)emptyTrash;
 @end
