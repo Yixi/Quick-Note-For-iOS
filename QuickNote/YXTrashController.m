@@ -18,7 +18,7 @@
 - (id)initView {
     self = [super initWithNibName:@"YXTrashListViewController" bundle:nil];
     self.NoteList = [[YXDB alloc] getTrashNotes];
-
+    self.folder = @"Trash";
     UIBarButtonItem *emptyButton = [[UIBarButtonItem alloc] initWithTitle:@"empty"
                                                                     style:UIBarButtonItemStyleBordered
                                                                    target:self
@@ -52,6 +52,14 @@
         [self.tableView reloadData];
         self.title = [NSString stringWithFormat:@"Trash(%d)",self.NoteList.count];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"diigo");
+    self.NoteList = [[YXDB alloc] getTrashNotes];
+    [self.tableView reloadData];
+    self.title = [NSString stringWithFormat:@"Trash(%d)",self.NoteList.count];
 }
 
 @end

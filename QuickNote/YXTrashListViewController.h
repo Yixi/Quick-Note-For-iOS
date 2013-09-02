@@ -13,6 +13,7 @@
     BOOL viewIsOutOfStage;
 }
 
+@property NSString *folder;
 @property (strong, nonatomic) NSMutableArray *NoteList;
 @property (strong, nonatomic) YXTrashDetailController *trashDetailViewController;
 

@@ -39,6 +39,7 @@
 
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -182,6 +183,7 @@
     }
     NSDictionary *currentNote = self.NoteList[indexPath.row];
     self.trashDetailViewController.noteid = [[currentNote objectForKey:@"id"] intValue];
+    self.trashDetailViewController.folder = self.folder;
 
     [self.navigationController pushViewController:self.trashDetailViewController animated:YES];
 

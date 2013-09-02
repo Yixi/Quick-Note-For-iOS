@@ -180,18 +180,20 @@
     sqlite3_close(dataBase);
 }
 
-- (void)deleteNoteById:(NSInteger)noteid {
-    //this will just move the note to the "trash" list , not real delete;
-    
+#pragma mark - move list
+
+- (void)moveToListById:(NSInteger)noteid list:(NSString *)list{
+
     if(sqlite3_open([[self dbFilePath] UTF8String], &dataBase)!= SQLITE_OK){
         sqlite3_close(dataBase);
         NSAssert(0, @"Failed to open database");
     }
     sqlite3_stmt *stmt;
 
-    char *updateNoteQuery = "UPDATE notes SET list='trash' WHERE id=?;";
+    char *updateNoteQuery = "UPDATE notes SET list=? WHERE id=?;";
     if(sqlite3_prepare_v2(dataBase, updateNoteQuery, -1, &stmt, nil) == SQLITE_OK){
-        sqlite3_bind_int(stmt, 1, noteid);
+        sqlite3_bind_text(stmt, 1, [list UTF8String], -1, nil);
+        sqlite3_bind_int(stmt, 2, noteid);
     }
     if(sqlite3_step(stmt)!= SQLITE_DONE){
         NSLog(@"Error update data");
@@ -202,6 +204,16 @@
     sqlite3_close(dataBase);
 }
 
+
+- (void)deleteNoteById:(NSInteger)noteid {
+    //this will just move the note to the "trash" list , not real delete;
+    [self moveToListById:noteid list:@"trash"];
+
+}
+
+- (void)restoreNoteFromTrash:(NSInteger)noteid {
+    [self moveToListById:noteid list:@""];
+}
 - (void)emptyTrashByList:(NSString *)list{
     if(sqlite3_open([[self dbFilePath] UTF8String], &dataBase)!= SQLITE_OK){
         sqlite3_close(dataBase);
@@ -225,6 +237,8 @@
 - (void)emptyTrash {
     [self emptyTrashByList:@"trash"];
 }
+
+
 
 @end
 

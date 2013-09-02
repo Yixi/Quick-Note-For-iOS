@@ -9,6 +9,7 @@
 #import "YXTrashDetailController.h"
 #import "YXFillTagsView.h"
 #import "YXDB.h"
+#import "YXTrashController.h"
 
 @interface YXTrashDetailController (){
     CGFloat NoteViewMinHeight;
@@ -70,8 +71,24 @@
     _fillTagsView = [[YXFillTagsView alloc] initWithFrame:CGRectMake(80, 15, 240, 30)];
     [_scrollView addSubview:_fillTagsView];
 
+    [self navRightButton];
+
 }
 
+- (void)navRightButton{
+    if(self.folder == @"Trash"){
+        UIBarButtonItem *restoreButton = [[UIBarButtonItem alloc] initWithTitle:@"Restore"
+                                                                          style:UIBarButtonItemStyleBordered
+                                                                         target:self
+                                                                         action:@selector(restoreNote)];
+        self.navigationItem.rightBarButtonItem = restoreButton;
+    }
+}
+
+- (void)restoreNote{
+    [[YXDB alloc] restoreNoteFromTrash:self.noteid];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)setupNoteContent{
     NoteViewMinHeight = _scrollView.frame.size.height - 58;

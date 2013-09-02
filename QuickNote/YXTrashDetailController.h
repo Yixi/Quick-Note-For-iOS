@@ -18,4 +18,6 @@
 @property UIScrollView *scrollView;
 @property YXFillTagsView *fillTagsView;
 
+@property NSString *folder;
+
 @end
